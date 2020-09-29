@@ -1,10 +1,19 @@
 import requests
 import json
-r=requests.get('https://api.telegram.org/bot1264159149:AAGLITr-bj-rC1wpFINhyOAbKQ6uJSFNqLs/getUpdates')
-data=r.json()
-yangilanganid=data['result'][0]['update_id']
-fromm=data['result'][0]['message']['from']
-chat=data['result'][0]['message']['chat']
-print(yangilanganid)
-print(fromm)
-print(chat)
+TOKEN = '1264159149:AAGLITr-bj-rC1wpFINhyOAbKQ6uJSFNqLs'
+url =requests.get(f'https://api.telegram.org/bot{TOKEN}/getUpdates')
+def sendMessage(res, text):
+    global response
+    url1 = f'https://api.telegram.org/bot{TOKEN}/sendMessage'
+    parameter = {
+        'chat_id': res,
+        'text': text
+    }
+    response = requests.get(url=url1, params=parameter)
+data=url.json()
+res=data['result'][-1]['message']['from']['id']
+i = 0
+while i<2:
+    
+    i += 1
+    sendMessage(res, f'Salom:{i}')
